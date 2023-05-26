@@ -7,12 +7,13 @@
   padding: 40px;
   background-color: rgba(255, 255, 255, 0.1);
   margin-bottom: 30px;
-}
 
-.title {
-  text-align: left;
+  &-title {
   font-size: 50px;
 }
+}
+
+
 
 /* MAIN */
 
@@ -29,11 +30,12 @@
 .btn {
   padding: 10px 15px;
   border-radius: 12px;
+  font-size: 28px;
+  font-weight: 700;
+  color: $white;
 }
 
 .btn-add {
-  font-size: 28px;
-  font-weight: 700;
   background-color: rgba(255, 255, 255, 0.1);
   
   &:hover {
@@ -42,13 +44,18 @@
 }
 
 .btn-remove {
-  color: $black;
-  font-size: 28px;
-  font-weight: 700;
   background-color: rgba(255, 0, 0, 0.25);
   
   &:hover {
     background-color: rgba(255, 0, 0, 0.35);
+  }
+}
+
+.btn-edit {
+  background-color: rgba(196, 178, 13, 0.55);
+  
+  &:hover {
+    background-color: rgba(196, 178, 13, 0.65);
   }
 }
 
@@ -95,7 +102,7 @@
   }
 }
 
-.add-book-form {
+.form {
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg, #30373f 0%, #000000 99.82%);
@@ -104,17 +111,10 @@
     position: relative;
     box-shadow: 0 0 10px 1px;
     color: $white;
+  }
 
-    &::before {
-      width: 90%;
-      height: 90%;
-      content: "";
-      display: block;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      z-index: -1;
-    }
+  .hide {
+    display: none;
   }
 
   .form-title {
@@ -143,12 +143,21 @@
 
   .submit-btn {
     font-size: 22px;
-    font-weight: 700;
     margin-top: 25px;
     background-color: rgba(4, 255, 0, 0.2);
     
     &:hover {
       background-color: rgba(4, 255, 0, 0.3);
+    }
+  }
+
+  .edit-btn {
+    font-size: 22px;
+    margin-top: 25px;
+    background-color: rgba(255, 230, 0, 0.25);
+  
+    &:hover {
+      background-color: rgba(255, 230, 0, 0.40);
     }
   }
 
