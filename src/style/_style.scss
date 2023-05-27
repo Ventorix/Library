@@ -33,6 +33,10 @@
   font-size: 28px;
   font-weight: 700;
   color: $white;
+
+  &:focus {
+    outline: $blue 1px solid;
+  }
 }
 
 .btn-add {
@@ -134,6 +138,23 @@
     color: $white;
     font-size: 20px;
     font-weight: 600;
+
+    &:focus {
+      outline: $blue 1px solid;
+    }
+
+    &:invalid {
+      outline: $orange 1px solid;
+    }
+  }
+
+  .invalid {
+    outline: $orange 1px solid;
+  }
+
+  .error-message {
+    margin-top: 10px;
+    color: red;
   }
 
   .input > option{
