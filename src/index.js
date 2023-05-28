@@ -5,8 +5,8 @@ const addBookBtn = document.querySelector('#addBookBtn');
 const gridContainer = document.querySelector('.books-grid');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
-const editForm = document.querySelector('.edit-form');
 const addForm = document.querySelector('.add-form');
+const editForm = document.querySelector('.edit-form');
 const inputAddValues = document.querySelectorAll('.input-add');
 const inputEditValues = document.querySelectorAll('.input-edit');
 
@@ -14,7 +14,8 @@ addBookBtn.addEventListener('click', showAddModal);
 addForm.addEventListener('submit', (e) => submitForm(e));
 editForm.addEventListener('submit', (e) => submitForm(e));
 overlay.addEventListener('click', hideModal);
-window.addEventListener('load', createAllBookCards);
+window.addEventListener('load', createStorageBookCards);
+
 inputAddValues.forEach((input) => input.addEventListener('focus', (e) => focusCheck(e)));
 inputEditValues.forEach((input) => input.addEventListener('focus', (e) => focusCheck(e)));
 inputAddValues.forEach((input) => input.addEventListener('blur', (e) => blurCheck(e)));
@@ -43,9 +44,11 @@ function removeErrors() {
 
 function blurCheck(e) {
   let input = e.target;
+  let nextElementTag = input.nextElementSibling.tagName;
+
   if (input.value == '') {
     input.classList.add('invalid');
-    if (input.nextElementSibling.tagName !== 'P') {
+    if (nextElementTag !== 'P') {
       createError(input, `Empty ${input.name} field`);
     }
   }
@@ -53,9 +56,14 @@ function blurCheck(e) {
 
 function focusCheck(e) {
   let input = e.target;
+  let nextElementTag = input.nextElementSibling.tagName;
+
+  if (nextElementTag === 'P') {
+    input.nextSibling.remove();
+  }
+
   if (input.classList.contains('invalid')) {
     input.classList.remove('invalid');
-    input.nextSibling.remove();
   }
 }
 
@@ -66,6 +74,7 @@ function validation(form) {
     inputAddValues.forEach((input) => {
       if (input.value == '') {
         if (input.nextElementSibling.tagName !== 'P') {
+          input.classList.add('invalid');
           createError(input, `Empty ${input.name} field`);
         }
         result = false;
@@ -74,7 +83,7 @@ function validation(form) {
   }
 
   if (form.classList.contains('edit-form')) {
-    inputAddValues.forEach((input) => {
+    inputEditValues.forEach((input) => {
       if (input.value == '') {
         if (input.nextElementSibling.tagName !== 'P') {
           createError(input, `Empty ${input.name} field`);
@@ -189,7 +198,7 @@ function editBook() {
   hideModal();
   clearLibrary();
   localStorage.setItem('library', JSON.stringify(myLibrary));
-  createAllBookCards();
+  createStorageBookCards();
 }
 
 function removeBook(e) {
@@ -256,7 +265,7 @@ function clearLibrary() {
   }
 }
 
-function createAllBookCards() {
+function createStorageBookCards() {
   let storageLibrary = localStorage.getItem('library');
 
   if (storageLibrary === null) {

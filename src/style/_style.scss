@@ -1,19 +1,14 @@
 /* HEADER */
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 40px;
   background-color: rgba(255, 255, 255, 0.1);
   margin-bottom: 30px;
 
   &-title {
-  font-size: 50px;
+  font-size: 40px;
 }
 }
-
-
 
 /* MAIN */
 
@@ -79,6 +74,7 @@
   border-radius: 8px;
   background: rgb(255, 255, 255);
   box-shadow: 4px 4px $darkBlue;
+  margin: 0 15px;
 }
 
 .book-card > p {
